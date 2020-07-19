@@ -21,7 +21,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
         }
       },
       { 
@@ -67,7 +67,11 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin(),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname,  '/static/index.html'),
+      title:"react App"
+    })
   ],
 
   // PATH RESOLVE
@@ -82,6 +86,7 @@ module.exports = {
 
   // OUTPUT DIRECTORY
   output: {
+    publicPath: '/',
     path: path.join(__dirname, 'dist'),
     filename: 'app.bundle.js'
   },
