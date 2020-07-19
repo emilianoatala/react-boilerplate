@@ -5,7 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const htmlPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // APP ENTRY POINT
@@ -67,9 +67,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin(),
-    new htmlPlugin({
-      template:path.resolve(__dirname,'index.html')
-  })
+    new HtmlWebpackPlugin()
   ],
 
   // PATH RESOLVE
