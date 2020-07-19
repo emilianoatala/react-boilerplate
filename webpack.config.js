@@ -1,6 +1,4 @@
 var path = require('path');
-const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -36,19 +34,7 @@ module.exports = {
   },
 
   optimization: {
-    minimize: true,
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        uglifyOptions: {
-          compress: true,
-          ecma: 6,
-          mangle: true
-        },
-        sourceMap: true
-      })
-    ],
+    minimize:true
   },
 
   plugins: [
@@ -56,13 +42,13 @@ module.exports = {
       filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.(js|jsx|css|html|svg)$/,
-      threshold: 8192,
+      threshold: 0,
       minRatio: 0.8
     }),
     new BrotliPlugin({ //brotli plugin
       asset: '[path].br[query]',
       test: /\.(js|jsx||css|html|svg)$/,
-      threshold: 10240,
+      threshold: 0,
       minRatio: 0.8
     }),
     new CleanWebpackPlugin(),
@@ -71,7 +57,17 @@ module.exports = {
       filename: 'index.html',
       template: path.join(__dirname,  '/static/index.html'),
       title:"react App"
-    })
+    }),
+    {
+      apply: (compiler) => {
+        compiler.hooks.done.tap('DonePlugin', (stats) => {
+            console.log('Compile is done !')
+            setTimeout(() => {
+                process.exit(0)
+            })
+        });
+      }
+    }
   ],
 
   // PATH RESOLVE
@@ -87,7 +83,7 @@ module.exports = {
   // OUTPUT DIRECTORY
   output: {
     publicPath: '/',
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public'),
     filename: 'app.bundle.js'
   },
 

@@ -5,9 +5,9 @@
   "main": "Index.jsx",
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",
-    "start": "serve -s dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
+    "start": "webpack -p && node server/server.js",
     "heroku-postbuild": "webpack -p"
   },
   "repository": {
@@ -43,6 +43,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-flexbox-grid": "^2.1.2",
@@ -52,7 +53,6 @@
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "serve": "^11.3.2",
     "styled-components": "^5.1.1"
   }
 }
