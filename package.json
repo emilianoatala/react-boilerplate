@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
-    "start": "webpack -p && node server/server.js",
-    "heroku-postbuild": "webpack -p"
+    "build": "webpack -p && node server/server.js",
+    "start": "webpack -p && node server/server.js"
   },
   "repository": {
     "type": "git",
