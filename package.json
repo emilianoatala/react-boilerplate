@@ -4,10 +4,10 @@
   "description": "",
   "main": "Index.jsx",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "dev": "webpack-dev-server --open --mode development",
+    "start": "serve -s dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "server":"serve dist",
     "heroku-postbuild": "webpack -p"
   },
   "repository": {
