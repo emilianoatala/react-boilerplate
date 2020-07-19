@@ -10,7 +10,7 @@ const DemoView = () => {
         dispatch(storeWord("Hola Mundo desde redux"))
     },[]);
 
-    return <div>{store.demoReducer.word || "hola mundo" }</div>
+    return <button>{store.demoReducer.word || "hola mundo" }</button>
 }
  
 export default DemoView
