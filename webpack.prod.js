@@ -35,6 +35,26 @@ module.exports = {
 
   optimization: {
     minimize: true,
+    splitChunks: {
+      chunks: "async",
+      minSize: 20000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 6,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: "~",
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
 
   plugins: [
@@ -79,15 +99,7 @@ module.exports = {
   output: {
     publicPath: "/",
     path: path.join(__dirname, "public"),
-    filename: "app.bundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
   },
-
-  // // DEV SERVER ENTRY POINT
-  // devServer: {
-  //   contentBase: path.resolve(__dirname, "./src"),
-  //   port: 3000,
-  //   watchContentBase: true,
-  //   open: true,
-  //   compress: true,
-  // },
 };
