@@ -1,16 +1,23 @@
-import React, {useEffect} from 'react';
-import  { useDispatch, useSelector }  from  'react-redux';
-import { storeWord } from '../redux/actions/demoActions';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+
+import { storeWord } from "../redux/actions/demoActions";
+
+const Word = styled.p`
+  font-size: 30px;
+  color: red;
+`;
 
 const DemoView = () => {
-    const store = useSelector(state => state)
-    const  dispatch  =  useDispatch ()
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(storeWord("Hola Mundo desde redux"))
-    },[]);
+  useEffect(() => {
+    dispatch(storeWord("Hola Mundo desde redux"));
+  }, []);
 
-    return <button>{store.demoReducer.word || "hola mundo" }</button>
-}
- 
-export default DemoView
+  return <Word>{store.demoReducer.word || "hola mundo"}</Word>;
+};
+
+export default DemoView;

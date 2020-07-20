@@ -1,6 +1,6 @@
-import { lazy } from 'react'
+import { lazy } from "react";
 
 export const routes = {
-    fallBack: () => "",
-    DemoView: lazy(() => import('./views/DemoView')),
-}
+  fallBack: () => "",
+  DemoView: lazy(() => import("./views/DemoView")),
+};
